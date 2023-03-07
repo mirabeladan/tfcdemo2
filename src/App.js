@@ -9,6 +9,9 @@ import {
  import { DataStore } from '@aws-amplify/datastore';
 import { Test } from './models';
 import React, { useEffect, useState } from "react";
+import {
+  TestCreateForm 
+ } from './ui-components';
 
 
 function App() {
@@ -16,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <HeroLayout3 />
-<NewForm1
+<TestCreateForm
 onChange={fields => setFormData(fields)}
     onSubmit={(fields) => {
         // Example function to trim all string inputs

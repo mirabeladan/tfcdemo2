@@ -5,18 +5,26 @@
  **************************************************************************/
 
 import * as React from "react";
-import { GridProps } from "@aws-amplify/ui-react";
+import { GridProps, TextFieldProps } from "@aws-amplify/ui-react";
 import { EscapeHatchProps } from "@aws-amplify/ui-react/internal";
 export declare type ValidationResponse = {
     hasError: boolean;
     errorMessage?: string;
 };
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
-export declare type TestCreateFormInputValues = {};
-export declare type TestCreateFormValidationValues = {};
+export declare type TestCreateFormInputValues = {
+    Field0?: string;
+    Field1?: string;
+};
+export declare type TestCreateFormValidationValues = {
+    Field0?: ValidationFunction<string>;
+    Field1?: ValidationFunction<string>;
+};
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type TestCreateFormOverridesProps = {
     TestCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
+    Field0?: PrimitiveOverrideProps<TextFieldProps>;
+    Field1?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type TestCreateFormProps = React.PropsWithChildren<{
     overrides?: TestCreateFormOverridesProps | undefined | null;

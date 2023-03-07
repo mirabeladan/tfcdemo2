@@ -33,5 +33,6 @@ export { default as MyIcon } from "./MyIcon";
 export { default as FeaturesText2x2 } from "./FeaturesText2x2";
 export { default as Features4x1 } from "./Features4x1";
 export { default as studioTheme } from "./studioTheme";
+export { default as TestCreateForm } from "./TestCreateForm";
 export { default as NewForm1 } from "./NewForm1";
 export { default as TestUpdateForm } from "./TestUpdateForm";

@@ -35,7 +35,7 @@ export default function NewForm1(props) {
     setErrors({});
   };
   const validations = {
-    Field1: [{ type: "Email" }],
+    Field1: [{ type: "Required" }, { type: "Email" }],
     Field0: [],
   };
   const runValidationTasks = async (
@@ -113,7 +113,7 @@ export default function NewForm1(props) {
     >
       <TextField
         label="Email"
-        isRequired={false}
+        isRequired={true}
         isReadOnly={false}
         placeholder="What's your email?"
         value={Field1}

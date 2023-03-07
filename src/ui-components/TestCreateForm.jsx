@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { Button, Flex, Grid } from "@aws-amplify/ui-react";
+import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { getOverrideProps } from "@aws-amplify/ui-react/internal";
 import { Test } from "../models";
 import { fetchByPath, validateField } from "./utils";
@@ -22,12 +22,22 @@ export default function TestCreateForm(props) {
     overrides,
     ...rest
   } = props;
-  const initialValues = {};
+  const initialValues = {
+    Field0: "",
+    Field1: "",
+  };
+  const [Field0, setField0] = React.useState(initialValues.Field0);
+  const [Field1, setField1] = React.useState(initialValues.Field1);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
+    setField0(initialValues.Field0);
+    setField1(initialValues.Field1);
     setErrors({});
   };
-  const validations = {};
+  const validations = {
+    Field0: [],
+    Field1: [{ type: "Email" }],
+  };
   const runValidationTasks = async (
     fieldName,
     currentValue,
@@ -53,7 +63,10 @@ export default function TestCreateForm(props) {
       padding="20px"
       onSubmit={async (event) => {
         event.preventDefault();
-        let modelFields = {};
+        let modelFields = {
+          Field0,
+          Field1,
+        };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
             if (Array.isArray(modelFields[fieldName])) {
@@ -98,6 +111,56 @@ export default function TestCreateForm(props) {
       {...getOverrideProps(overrides, "TestCreateForm")}
       {...rest}
     >
+      <TextField
+        label="Field0"
+        isRequired={false}
+        isReadOnly={false}
+        value={Field0}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Field0: value,
+              Field1,
+            };
+            const result = onChange(modelFields);
+            value = result?.Field0 ?? value;
+          }
+          if (errors.Field0?.hasError) {
+            runValidationTasks("Field0", value);
+          }
+          setField0(value);
+        }}
+        onBlur={() => runValidationTasks("Field0", Field0)}
+        errorMessage={errors.Field0?.errorMessage}
+        hasError={errors.Field0?.hasError}
+        {...getOverrideProps(overrides, "Field0")}
+      ></TextField>
+      <TextField
+        label="Field1"
+        isRequired={false}
+        isReadOnly={false}
+        value={Field1}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              Field0,
+              Field1: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.Field1 ?? value;
+          }
+          if (errors.Field1?.hasError) {
+            runValidationTasks("Field1", value);
+          }
+          setField1(value);
+        }}
+        onBlur={() => runValidationTasks("Field1", Field1)}
+        errorMessage={errors.Field1?.errorMessage}
+        hasError={errors.Field1?.hasError}
+        {...getOverrideProps(overrides, "Field1")}
+      ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
