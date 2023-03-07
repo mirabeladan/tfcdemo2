@@ -8,12 +8,16 @@ import {
  } from './ui-components';
  import { DataStore } from '@aws-amplify/datastore';
 import { Test } from './models';
+import React, { useEffect, useState } from "react";
+
 
 function App() {
+  const [formData, setFormData] = useState()
   return (
     <div className="App">
       <HeroLayout3 />
 <NewForm1
+onChange={fields => setFormData(fields)}
     onSubmit={(fields) => {
         // Example function to trim all string inputs
         const updatedFields = {}
