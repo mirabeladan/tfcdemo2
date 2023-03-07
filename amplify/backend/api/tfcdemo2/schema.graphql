@@ -1,0 +1,6 @@
+type Test @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  Field0: String
+  Field1: AWSEmail
+}
+ 
