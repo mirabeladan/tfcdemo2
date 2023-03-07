@@ -6,6 +6,8 @@ import {
  import {
   HeroLayout3 
  } from './ui-components';
+ import { DataStore } from '@aws-amplify/datastore';
+import { Test } from './models';
 
 function App() {
   return (
