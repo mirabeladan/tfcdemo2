@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <HeroLayout3 />
-<TestCreateForm
+<NewForm1
 onChange={fields => setFormData(fields)}
     onSubmit={(fields) => {
         // Example function to trim all string inputs
